@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="CVSkill.Alexa\**" />
+    <EmbeddedResource Remove="CVSkill.Alexa\**" />
+    <None Remove="CVSkill.Alexa\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Bottlecap">
+      <HintPath>..\..\..\Bottlecap\WinUniversal\src\bin\Debug\Bottlecap.dll</HintPath>
+    </Reference>
+    <Reference Include="Bottlecap.Components.Bots">
+      <HintPath>..\..\..\Bottlecap\Components\Bots\src\bin\Debug\Bottlecap.Components.Bots.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
