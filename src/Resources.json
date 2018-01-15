@@ -1,0 +1,16 @@
+﻿{
+  "Resources": [
+    {
+      "Key": "KeywordMissing",
+      "Values": [
+        "Please specify a skill"
+      ]
+    },
+    {
+      "Key": "NoJobsWithSkill",
+      "Values": [
+        "I don't have any experience with {0}, but I'm willing to learn new things if that's an option."
+      ]
+    }
+  ]
+}

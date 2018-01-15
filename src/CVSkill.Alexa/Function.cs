@@ -7,6 +7,7 @@ using Bottlecap.Dispatching;
 using Bottlecap.Resources;
 using Bottlecap.Components.Bots.Alexa;
 using System;
+using CVSkill.Services;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
@@ -20,6 +21,7 @@ namespace CVSkill.Alexa
         {
             DependencyService.Current.Register<IDispatcher, BaseDispatcher>(new BaseDispatcher());
             DependencyService.Current.Register<IResourceManager, ResourceManager>(new ResourceManager());
+            DependencyService.Current.Register<ICVService, CVService>(new CVService());
 
             Bottlecap.Json.JsonFactory.Current = new Bottlecap.Json.Newtonsoft.JsonFactory();
         }
@@ -34,7 +36,7 @@ namespace CVSkill.Alexa
         {
             var alexa = new AlexaBot(input, context, addressOnlySupportsPostalCode: false);
 
-            var action = new CVAction(DependencyService.Current.Get<IResourceManager>());
+            var action = new CVAction(DependencyService.Current.Get<IResourceManager>(), DependencyService.Current.Get<ICVService>());
 
             return alexa.ToSkillResponse(action.ProcessAsync(alexa).Result);
         }

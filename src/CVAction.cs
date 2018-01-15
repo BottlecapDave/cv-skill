@@ -1,21 +1,59 @@
 ﻿using System.Threading.Tasks;
 using Bottlecap.Components.Bots;
 using Bottlecap.Resources;
+using System.Reflection;
+using CVSkill.Services;
+using System;
 
 namespace CVSkill
 {
-    public class CVAction : IBotAction
+    public partial class CVAction : IBotAction
     {
+        private static bool _IsResourcesLoaded;
+
         private readonly IResourceManager _resourceManager;
 
-        public CVAction(IResourceManager resourceManager)
+        private readonly ICVService _service;
+
+        public CVAction(IResourceManager resourceManager, ICVService service)
         {
             _resourceManager = resourceManager;
+            _service = service;
         }
 
-        public Task<IBotResponse> ProcessAsync(IBot bot)
+        public async Task<IBotResponse> ProcessAsync(IBot bot)
         {
-            return Task.FromResult<IBotResponse>(new BotResponse());
+            bot.Log("Intent Name: {0}", bot.Query?.Name);
+
+            if (String.IsNullOrEmpty(bot.Query?.Name) == false)
+            {
+                switch (bot.Query?.Name)
+                {
+                    case IntentKeys.Experience:
+                        return await GetExperienceAsync(bot);
+                }
+            }
+
+            return new BotResponse();
+        }
+
+        private void LoadResources()
+        {
+            if (_IsResourcesLoaded == false)
+            {
+                var assembly = Assembly.Load(new AssemblyName(typeof(CVAction).AssemblyQualifiedName));
+                if (assembly != null)
+                {
+                    using (var stream = assembly.GetManifestResourceStream("CVSkill.Resources.json"))
+                    {
+                        if (stream != null)
+                        {
+                            _resourceManager.Initialise(stream);
+                            _IsResourcesLoaded = true;
+                        }
+                    }
+                }
+            }
         }
     }
 }
