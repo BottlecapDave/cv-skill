@@ -19,6 +19,8 @@ namespace CVSkill
         {
             _resourceManager = resourceManager;
             _service = service;
+
+            LoadResources();
         }
 
         public async Task<IBotResponse> ProcessAsync(IBot bot)
@@ -41,7 +43,7 @@ namespace CVSkill
         {
             if (_IsResourcesLoaded == false)
             {
-                var assembly = Assembly.Load(new AssemblyName(typeof(CVAction).AssemblyQualifiedName));
+                var assembly = Assembly.Load(new AssemblyName("CVSkill"));
                 if (assembly != null)
                 {
                     using (var stream = assembly.GetManifestResourceStream("CVSkill.Resources.json"))
