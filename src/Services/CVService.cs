@@ -24,12 +24,15 @@ namespace CVSkill.Services
                 foreach (var employer in _cv.Employment)
                 {
                     var duties = employer.Duties.Where(x => x.Skills?.Any(dutySkill => String.Equals(dutySkill, skill.Id, StringComparison.OrdinalIgnoreCase)) == true);
-                    jobs.Add(new CVJob()
+                    if (duties.Count() > 0)
                     {
-                        Employer = employer.Employer,
-                        Role = employer.Role,
-                        Duties = duties
-                    });
+                        jobs.Add(new CVJob()
+                        {
+                            Employer = employer.Employer,
+                            Role = employer.Role,
+                            Duties = duties
+                        });
+                    }
                 }
             }
 

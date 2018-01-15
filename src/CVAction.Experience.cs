@@ -29,7 +29,7 @@ namespace CVSkill
                 bot.Log("Get Jobs...");
                 var jobs = _service.GetJobs(keyword);
 
-                if (jobs.Count < 0)
+                if (jobs.Count < 1)
                 {
                     return new BotResponse()
                     {
