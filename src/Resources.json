@@ -11,6 +11,25 @@
       "Values": [
         "I don't have any experience with {0}, but I'm willing to learn new things if that's an option."
       ]
+    },
+    {
+      "Key": "ExperienceFoundStart",
+      "Values": [
+        "Yes, I have experience with {0}.",
+        "Indeed, I have experience with {0}."
+      ]
+    },
+    {
+      "Key": "CurrentJobExperienceStart",
+      "Values": [
+        "Currently at {0} I "
+      ]
+    },
+    {
+      "Key": "PreviousJobExperienceStart",
+      "Values": [
+        "Previously at {0} I "
+      ]
     }
   ]
 }

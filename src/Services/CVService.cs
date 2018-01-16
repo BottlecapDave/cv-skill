@@ -26,12 +26,9 @@ namespace CVSkill.Services
                     var duties = employer.Duties.Where(x => x.Skills?.Any(dutySkill => String.Equals(dutySkill, skill.Id, StringComparison.OrdinalIgnoreCase)) == true);
                     if (duties.Count() > 0)
                     {
-                        jobs.Add(new CVJob()
-                        {
-                            Employer = employer.Employer,
-                            Role = employer.Role,
-                            Duties = duties
-                        });
+                        var job = employer.Clone();
+                        job.Duties = duties;
+                        jobs.Add(job);
                     }
                 }
             }

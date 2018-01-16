@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Bottlecap.Components.Bots;
 using System;
+using System.Text;
 
 namespace CVSkill
 {
@@ -39,10 +40,33 @@ namespace CVSkill
                 }
                 else
                 {
+                    bot.Log("{0} Jobs found", jobs.Count);
+
+                    var responseBuilder = new StringBuilder();
+                    responseBuilder.AppendFormat(_resourceManager.GetResource(ResourceKeys.ExperienceFoundStart),
+                                                 keyword);
+
+                    for (int i = 0; i < jobs.Count; i++)
+                    {
+                        var job = jobs[i];
+
+                        responseBuilder.Append(" ");
+                        responseBuilder.AppendFormat(_resourceManager.GetResource(job.End == null
+                                                                                  ? ResourceKeys.CurrentJobExperienceStart
+                                                                                  : ResourceKeys.PreviousJobExperienceStart),
+                                                     job.Employer);
+
+                        foreach (var duty in job.Duties)
+                        {
+                            responseBuilder.AppendFormat("{0} ", duty.Duty);
+                        }
+                    }
+
+                    bot.Log("Jobs Response: {0}", responseBuilder.ToString());
+
                     return new BotResponse()
                     {
-                        Speak = String.Format("Jobs: {0}",
-                                              jobs.Count)
+                        Speak = responseBuilder.ToString()
                     };
                 }
             }
