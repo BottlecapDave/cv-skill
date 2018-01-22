@@ -32,11 +32,22 @@ namespace CVSkill
 
                 if (jobs.Count < 1)
                 {
-                    return new BotResponse()
+                    if (_service.IsSkillPresent(keyword))
                     {
-                        Speak = String.Format(_resourceManager.GetResource(ResourceKeys.NoJobsWithSkill),
-                                              keyword)
-                    };
+                        return new BotResponse()
+                        {
+                            Speak = String.Format(_resourceManager.GetResource(ResourceKeys.NoJobsWithSkill),
+                                                  keyword)
+                        };
+                    }
+                    else
+                    {
+                        return new BotResponse()
+                        {
+                            Speak = String.Format(_resourceManager.GetResource(ResourceKeys.NoExperienceWithSkill),
+                                                  keyword)
+                        };
+                    }
                 }
                 else
                 {
@@ -55,6 +66,7 @@ namespace CVSkill
                                                                                   ? ResourceKeys.CurrentJobExperienceStart
                                                                                   : ResourceKeys.PreviousJobExperienceStart),
                                                      job.Employer);
+                        responseBuilder.Append(" ");
 
                         foreach (var duty in job.Duties)
                         {

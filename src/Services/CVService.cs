@@ -14,7 +14,7 @@ namespace CVSkill.Services
         public IReadOnlyList<CVJob> GetJobs(string keyword)
         {
             var jobs = new List<CVJob>();
-            var keywordWithNoSpaces = keyword.Replace(" ", string.Empty);
+            var keywordWithNoSpaces = keyword.Replace(" ", String.Empty);
 
             var skills = _cv.Skills?.Where(x => x.Keywords?.Any(skillkeyword => String.Equals(skillkeyword, keywordWithNoSpaces, StringComparison.OrdinalIgnoreCase)) == true);
             skills = skills.Union(_cv.Skills?.Where(x => String.Equals(x.Skill, keywordWithNoSpaces, StringComparison.OrdinalIgnoreCase)));
@@ -43,6 +43,16 @@ namespace CVSkill.Services
             {
                 _cv = request.Response;
             }
+        }
+
+        public bool IsSkillPresent(string keyword)
+        {
+            var keywordWithNoSpaces = keyword.Replace(" ", String.Empty);
+
+            var skills = _cv.Skills?.Where(x => x.Keywords?.Any(skillkeyword => String.Equals(skillkeyword, keywordWithNoSpaces, StringComparison.OrdinalIgnoreCase)) == true);
+            skills = skills.Union(_cv.Skills?.Where(x => String.Equals(x.Skill, keywordWithNoSpaces, StringComparison.OrdinalIgnoreCase)));
+
+            return skills.Any();
         }
     }
 }

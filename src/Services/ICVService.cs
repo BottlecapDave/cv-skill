@@ -9,5 +9,6 @@ namespace CVSkill.Services
         Task InitialiseAsync();
 
         IReadOnlyList<CVJob> GetJobs(string keyword);
+        bool IsSkillPresent(string keyword);
     }
 }

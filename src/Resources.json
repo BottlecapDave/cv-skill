@@ -9,7 +9,7 @@
     {
       "Key": "NoJobsWithSkill",
       "Values": [
-        "I don't have any experience with {0}, but I'm willing to learn new things if that's an option."
+        "Yes, I have experience with {0} but I can't recall examples where I used it."
       ]
     },
     {
@@ -22,13 +22,19 @@
     {
       "Key": "CurrentJobExperienceStart",
       "Values": [
-        "Currently at {0} I "
+        "Currently at {0}"
       ]
     },
     {
       "Key": "PreviousJobExperienceStart",
       "Values": [
-        "Previously at {0} I "
+        "Previously at {0}"
+      ]
+    },
+    {
+      "Key": "NoExperienceWithSkill",
+      "Values": [
+        "I don't have any experience with {0}, but I'm willing to learn new things if that's an option."
       ]
     }
   ]

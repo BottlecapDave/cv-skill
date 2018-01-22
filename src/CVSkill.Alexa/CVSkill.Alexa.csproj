@@ -5,14 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Alexa.NET" Version="1.3.0" />
+    <PackageReference Include="Alexa.NET" Version="1.4.2" />
     <PackageReference Include="Amazon.Lambda.Core" Version="1.0.0" />
     <PackageReference Include="Amazon.Lambda.Serialization.Json" Version="1.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <DotNetCliToolReference Include="Amazon.Lambda.Tools" Version="1.9.0" />
+    <DotNetCliToolReference Include="Amazon.Lambda.Tools" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,16 +21,16 @@
 
   <ItemGroup>
     <Reference Include="Bottlecap">
-      <HintPath>..\..\..\..\Bottlecap\WinUniversal\src\bin\Debug\Bottlecap.dll</HintPath>
+      <HintPath>..\..\..\..\Bottlecap\WinUniversal\src\bin\$(Configuration)\Bottlecap.dll</HintPath>
     </Reference>
     <Reference Include="Bottlecap.Components.Bots">
-      <HintPath>..\..\..\..\Bottlecap\Components\Bots\src\bin\Debug\Bottlecap.Components.Bots.dll</HintPath>
+      <HintPath>..\..\..\..\Bottlecap\Components\Bots\src\bin\$(Configuration)\Bottlecap.Components.Bots.dll</HintPath>
     </Reference>
     <Reference Include="Bottlecap.Components.Bots.Alexa">
-      <HintPath>..\..\..\..\Bottlecap\Components\Bots\src\Alexa\bin\Debug\Bottlecap.Components.Bots.Alexa.dll</HintPath>
+      <HintPath>..\..\..\..\Bottlecap\Components\Bots\src\Alexa\bin\$(Configuration)\Bottlecap.Components.Bots.Alexa.dll</HintPath>
     </Reference>
     <Reference Include="Bottlecap.Json.Newtonsoft">
-      <HintPath>..\..\..\..\Bottlecap\WinUniversal\src\Json\Newtonsoft\bin\Debug\Bottlecap.Json.Newtonsoft.dll</HintPath>
+      <HintPath>..\..\..\..\Bottlecap\WinUniversal\src\Json\Newtonsoft\bin\$(Configuration)\Bottlecap.Json.Newtonsoft.dll</HintPath>
     </Reference>
   </ItemGroup>
 
