@@ -8,7 +8,9 @@
   <ItemGroup>
     <Compile Remove="CVSkill.Alexa\**" />
     <Compile Remove="Tests\**" />
+    <EmbeddedResource Remove="CVSkill.Alexa\**" />
     <EmbeddedResource Remove="Tests\**" />
+    <None Remove="CVSkill.Alexa\**" />
     <None Remove="Tests\**" />
   </ItemGroup>
 

@@ -16,5 +16,6 @@
     "function-handler"     : "CVSkill.Alexa::CVSkill.Alexa.Function::FunctionHandler",
     "function-name"        : "DavidKendallCV",
     "function-role"        : "arn:aws:iam::349368810675:role/lambda_exec_DavidKendallCV",
-    "environment-variables" : ""
+    "environment-variables" : "",
+    "tracing-mode"          : "PassThrough"
 }

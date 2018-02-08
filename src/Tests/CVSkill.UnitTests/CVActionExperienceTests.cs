@@ -16,7 +16,6 @@ namespace CVSkill.UnitTests
         public void Setup()
         {
             DependencyService.Current.Register<IDispatcher, BaseDispatcher>(new BaseDispatcher());
-            DependencyService.Current.Register<IResourceManager, ResourceManager>(new ResourceManager());
             DependencyService.Current.Register<ICVService, CVService>(new CVService());
 
             Bottlecap.Json.JsonFactory.Current = new Bottlecap.Json.Newtonsoft.JsonFactory();

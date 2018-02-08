@@ -36,6 +36,11 @@ namespace CVSkill.Services
             return jobs;
         }
 
+        public string GetProfile()
+        {
+            return _cv.Profile;
+        }
+
         public async Task InitialiseAsync()
         {
             var request = new CVWebRequest();
