@@ -8,5 +8,6 @@
         public const string CurrentJobExperienceStart = "CurrentJobExperienceStart";
         public const string PreviousJobExperienceStart = "PreviousJobExperienceStart";
         public const string NoExperienceWithSkill = "NoExperienceWithSkill";
+        public const string Contact = "Contact";
     }
 }

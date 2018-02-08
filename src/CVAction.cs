@@ -35,6 +35,8 @@ namespace CVSkill
                         return await GetExperienceAsync(bot);
                     case IntentKeys.Describe:
                         return await DescribeAsync(bot);
+                    case IntentKeys.Contact:
+                        return await ContactAsync(bot);
                 }
             }
 

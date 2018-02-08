@@ -36,6 +36,12 @@
       "Values": [
         "I don't have any experience with {0}, but I'm willing to learn new things if that's an option."
       ]
+    },
+    {
+      "Key": "Contact",
+      "Values": [
+        "You can contact me at, me @ david s kendall.co.uk"
+      ]
     }
   ]
 }
