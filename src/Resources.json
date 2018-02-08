@@ -32,6 +32,13 @@
       ]
     },
     {
+      "Key": "ExperienceNoDutiesFoundStart",
+      "Values": [
+        "Yes, I have experience with {0}. I gained experience at",
+        "Indeed, I have experience with {0}. I gained experience at"
+      ]
+    },
+    {
       "Key": "NoExperienceWithSkill",
       "Values": [
         "I don't have any experience with {0}, but I'm willing to learn new things if that's an option."
@@ -40,7 +47,8 @@
     {
       "Key": "Contact",
       "Values": [
-        "You can contact me at, me @ david s kendall.co.uk"
+        "You can contact me at, me @ david s kendall.co.uk",
+        "You can email me at, me @ david s kendall.co.uk"
       ]
     }
   ]

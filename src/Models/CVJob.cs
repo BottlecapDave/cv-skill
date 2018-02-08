@@ -15,6 +15,8 @@ namespace CVSkill.Models
 
         public IEnumerable<CVJobDuty> Duties { get; set; }
 
+        public IEnumerable<string> Skills { get; set; }
+
         public CVJob Clone()
         {
             return new CVJob()
@@ -23,7 +25,8 @@ namespace CVSkill.Models
                 Employer = Employer,
                 Start = Start,
                 End = End,
-                Duties = Duties
+                Duties = Duties,
+                Skills = Skills
             };
         }
     }

@@ -11,5 +11,6 @@ namespace CVSkill.Services
         IReadOnlyList<CVJob> GetJobs(string keyword);
         bool IsSkillPresent(string keyword);
         string GetProfile();
+        string GetSkillName(string keyword);
     }
 }

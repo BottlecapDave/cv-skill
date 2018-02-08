@@ -52,7 +52,7 @@ namespace CVSkill.UnitTests
             var result = wrapper.Action.ProcessAsync(wrapper.MockedBot.Object).Result;
 
             // Assert
-            Assert.IsTrue(result.Speak.Contains(ResourceKeys.NoJobsWithSkill), 
+            Assert.IsTrue(result.Speak.Contains(ResourceKeys.ExperienceNoDutiesFoundStart), 
                           "Expected no jobs with skill to be found. Response was {0}",
                           result.Speak);
         }

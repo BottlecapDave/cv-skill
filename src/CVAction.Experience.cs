@@ -2,6 +2,7 @@
 using Bottlecap.Components.Bots;
 using System;
 using System.Text;
+using System.Linq;
 
 namespace CVSkill
 {
@@ -54,23 +55,49 @@ namespace CVSkill
                     bot.Log("{0} Jobs found", jobs.Count);
 
                     var responseBuilder = new StringBuilder();
-                    responseBuilder.AppendFormat(_resourceManager.GetResource(ResourceKeys.ExperienceFoundStart),
-                                                 keyword);
 
-                    for (int i = 0; i < jobs.Count; i++)
+                    if (jobs.Any(x => x.Duties?.Any() == true))
                     {
-                        var job = jobs[i];
+                        responseBuilder.AppendFormat(_resourceManager.GetResource(ResourceKeys.ExperienceFoundStart),
+                                                     keyword);
 
-                        responseBuilder.Append(" ");
-                        responseBuilder.AppendFormat(_resourceManager.GetResource(job.End == null
-                                                                                  ? ResourceKeys.CurrentJobExperienceStart
-                                                                                  : ResourceKeys.PreviousJobExperienceStart),
-                                                     job.Employer);
-                        responseBuilder.Append(" ");
-
-                        foreach (var duty in job.Duties)
+                        for (int i = 0; i < jobs.Count; i++)
                         {
-                            responseBuilder.AppendFormat("{0} ", duty.Duty);
+                            var job = jobs[i];
+
+                            if (job.Duties != null)
+                            {
+                                responseBuilder.Append(" ");
+                                responseBuilder.AppendFormat(_resourceManager.GetResource(job.End == null
+                                                                                          ? ResourceKeys.CurrentJobExperienceStart
+                                                                                          : ResourceKeys.PreviousJobExperienceStart),
+                                                             job.Employer);
+                                responseBuilder.Append(" ");
+
+
+                                foreach (var duty in job.Duties)
+                                {
+                                    responseBuilder.AppendFormat("{0} ", duty.Duty);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        responseBuilder.AppendFormat(_resourceManager.GetResource(ResourceKeys.ExperienceNoDutiesFoundStart),
+                                                     keyword);
+                        responseBuilder.Append(" ");
+
+                        for (int i = 0; i < jobs.Count; i++)
+                        {
+                            if (i < (jobs.Count - 1))
+                            {
+                                responseBuilder.AppendFormat("{0}, ", jobs[i].Employer);
+                            }
+                            else
+                            {
+                                responseBuilder.AppendFormat("and {0}.", jobs[i].Employer);
+                            }
                         }
                     }
 

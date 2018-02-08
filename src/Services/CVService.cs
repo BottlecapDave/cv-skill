@@ -14,10 +14,8 @@ namespace CVSkill.Services
         public IReadOnlyList<CVJob> GetJobs(string keyword)
         {
             var jobs = new List<CVJob>();
-            var keywordWithNoSpaces = keyword.Replace(" ", String.Empty);
 
-            var skills = _cv.Skills?.Where(x => x.Keywords?.Any(skillkeyword => String.Equals(skillkeyword, keywordWithNoSpaces, StringComparison.OrdinalIgnoreCase)) == true);
-            skills = skills.Union(_cv.Skills?.Where(x => String.Equals(x.Skill, keywordWithNoSpaces, StringComparison.OrdinalIgnoreCase)));
+            var skills = GetSkills(_cv.Skills, keyword);
 
             foreach (var skill in skills)
             {
@@ -28,6 +26,12 @@ namespace CVSkill.Services
                     {
                         var job = employer.Clone();
                         job.Duties = duties;
+                        jobs.Add(job);
+                    }
+                    else if (employer.Skills?.Any(x => String.Equals(x, skill.Id, StringComparison.OrdinalIgnoreCase)) == true)
+                    {
+                        var job = employer.Clone();
+                        job.Duties = null;
                         jobs.Add(job);
                     }
                 }
@@ -52,12 +56,24 @@ namespace CVSkill.Services
 
         public bool IsSkillPresent(string keyword)
         {
+            return GetSkills(_cv.Skills, keyword).Any();
+        }
+
+        public string GetSkillName(string keyword)
+        {
+            var skill = GetSkills(_cv.Skills, keyword);
+
+            return skill.FirstOrDefault()?.Skill;
+        }
+
+        private IEnumerable<Models.CVSkill> GetSkills(IEnumerable<Models.CVSkill> skills, string keyword)
+        {
             var keywordWithNoSpaces = keyword.Replace(" ", String.Empty);
 
-            var skills = _cv.Skills?.Where(x => x.Keywords?.Any(skillkeyword => String.Equals(skillkeyword, keywordWithNoSpaces, StringComparison.OrdinalIgnoreCase)) == true);
-            skills = skills.Union(_cv.Skills?.Where(x => String.Equals(x.Skill, keywordWithNoSpaces, StringComparison.OrdinalIgnoreCase)));
+            var skillsToReturn = skills?.Where(x => x.Keywords?.Any(skillkeyword => String.Equals(skillkeyword, keywordWithNoSpaces, StringComparison.OrdinalIgnoreCase)) == true);
+            skillsToReturn = skillsToReturn.Union(skills?.Where(x => String.Equals(x.Skill, keywordWithNoSpaces, StringComparison.OrdinalIgnoreCase)));
 
-            return skills.Any();
+            return skillsToReturn;
         }
     }
 }
