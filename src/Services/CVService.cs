@@ -75,5 +75,10 @@ namespace CVSkill.Services
 
             return skillsToReturn;
         }
+
+        public IEnumerable<string> GetInterests()
+        {
+            return _cv.Interests;
+        }
     }
 }

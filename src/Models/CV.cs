@@ -9,5 +9,7 @@ namespace CVSkill.Models
         public IEnumerable<CVSkill> Skills { get; set; }
 
         public IEnumerable<CVJob> Employment { get; set; }
+
+        public IEnumerable<string> Interests { get; set; }
     }
 }
