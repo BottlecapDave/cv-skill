@@ -80,5 +80,17 @@ namespace CVSkill.Services
         {
             return _cv.Interests;
         }
+
+        public IEnumerable<CVJob> GetEmploymentHistory()
+        {
+            return _cv.Employment;
+        }
+
+        public CVJob GetEmploymentHistory(string company)
+        {
+            var companyWithoutSpaces = company.Replace(" ", String.Empty);
+
+            return _cv.Employment.FirstOrDefault(x => String.Equals(x.Employer.Replace(" ", String.Empty), companyWithoutSpaces, StringComparison.OrdinalIgnoreCase));
+        }
     }
 }

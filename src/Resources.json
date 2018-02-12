@@ -50,6 +50,22 @@
         "You can contact me at, me @ david s kendall.co.uk",
         "You can email me at, me @ david s kendall.co.uk"
       ]
+    },
+    {
+      "Key": "CurrentEmploymentStart",
+      "Values": [
+        "I've been working at {2} as a {3} since {0:MMM yyyy}.",
+        "I'm currently working at {2} as a {3}. I have been working there since {0:MMM yyyy}.",
+        "Since {0:MMM yyyy} I have been working as a {3} at {2}."
+      ]
+    },
+    {
+      "Key": "PreviousEmploymentStart",
+      "Values": [
+        "I worked at {2} as a {3} between {0:MMM yyyy} and {1:MMM yyyy}.",
+        "I worked at {2} as a {3}. I worked there from {0:MMM yyyy} and {1:MMM yyyy}.",
+        "Between {0:MMM yyyy} and {1:MMM yyyy} I worked as a {3} at {2}."
+      ]
     }
   ]
 }

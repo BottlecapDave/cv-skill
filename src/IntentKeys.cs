@@ -6,5 +6,7 @@
         public const string Describe = "Describe";
         public const string Contact = "Contact";
         public const string Interests = "Interests";
+        public const string EmploymentCurrent = "EmploymentCurrent";
+        public const string EmploymentHistory = "EmploymentHistory";
     }
 }

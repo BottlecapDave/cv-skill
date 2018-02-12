@@ -12,6 +12,8 @@ namespace CVSkill.Services
         bool IsSkillPresent(string keyword);
         string GetProfile();
         string GetSkillName(string keyword);
+        CVJob GetEmploymentHistory(string company);
+        IEnumerable<CVJob> GetEmploymentHistory();
         IEnumerable<string> GetInterests();
     }
 }

@@ -39,6 +39,10 @@ namespace CVSkill
                         return await ContactAsync(bot);
                     case IntentKeys.Interests:
                         return await InterestsAsync(bot);
+                    case IntentKeys.EmploymentCurrent:
+                        return await GetCurrentEmploymentAsync(bot);
+                    //case IntentKeys.EmploymentHistory:
+                    //    return await GetCurrentEmploymentAsync(bot);
                 }
             }
 
