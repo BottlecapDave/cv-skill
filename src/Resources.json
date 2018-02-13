@@ -66,6 +66,20 @@
         "I worked at {2} as a {3}. I worked there from {0:MMM yyyy} and {1:MMM yyyy}.",
         "Between {0:MMM yyyy} and {1:MMM yyyy} I worked as a {3} at {2}."
       ]
+    },
+    {
+      "Key": "PreviousEmploymentContinue",
+      "Values": [
+        "Do you wish to hear about my next employer?",
+        "Would you like to hear about my next employer?",
+        "Do you wish for me to continue with my employment history?"
+      ]
+    },
+    {
+      "Key": "NoFurtherEmploymentHistory",
+      "Values": [
+        "You've reached the end of my employment history"
+      ]
     }
   ]
 }

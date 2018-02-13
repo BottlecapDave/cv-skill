@@ -12,5 +12,7 @@
         public const string ExperienceNoDutiesFoundStart = "ExperienceNoDutiesFoundStart";
         public const string CurrentEmploymentStart = "CurrentEmploymentStart";
         public const string PreviousEmploymentStart = "PreviousEmploymentStart";
+        public const string PreviousEmploymentContinue = "PreviousEmploymentContinue";
+        public const string NoFurtherEmploymentHistory = "NoFurtherEmploymentHistory";
     }
 }

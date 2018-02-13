@@ -41,8 +41,15 @@ namespace CVSkill
                         return await InterestsAsync(bot);
                     case IntentKeys.EmploymentCurrent:
                         return await GetCurrentEmploymentAsync(bot);
-                    //case IntentKeys.EmploymentHistory:
-                    //    return await GetCurrentEmploymentAsync(bot);
+                    case IntentKeys.EmploymentHistory:
+                        return await GetEmploymentHistoryAsync(bot);
+                    case IntentKeys.YesAlexa:
+                    case IntentKeys.NextAlexa:
+                        return await GetNextEmploymentHistoryAsync(bot);
+                    case IntentKeys.StopAlexa:
+                    case IntentKeys.CancelAlexa:
+                    case IntentKeys.NoAlexa:
+                        return new BotResponse();
                 }
             }
 
