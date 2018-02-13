@@ -43,6 +43,8 @@ namespace CVSkill
                         return await GetCurrentEmploymentAsync(bot);
                     case IntentKeys.EmploymentHistory:
                         return await GetEmploymentHistoryAsync(bot);
+                    case IntentKeys.EmploymentSpecific:
+                        return await GetSpecificEmploymentHistoryAsync(bot);
                     case IntentKeys.YesAlexa:
                     case IntentKeys.NextAlexa:
                         return await GetNextEmploymentHistoryAsync(bot);

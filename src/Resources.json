@@ -80,6 +80,13 @@
       "Values": [
         "You've reached the end of my employment history"
       ]
+    },
+    {
+      "Key": "NoJobsWithEmployer",
+      "Values": [
+        "I haven't worked for {0}.",
+        "I don't have any recollection working for {0}."
+      ]
     }
   ]
 }

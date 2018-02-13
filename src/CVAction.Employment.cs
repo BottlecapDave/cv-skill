@@ -4,6 +4,7 @@ using System.Text;
 using System.Linq;
 using CVSkill.Models;
 using System.Collections.Generic;
+using System;
 
 namespace CVSkill
 {
@@ -17,7 +18,40 @@ namespace CVSkill
             var employmentHistory = _service.GetEmploymentHistory();
             var role = employmentHistory.FirstOrDefault(x => x.End == null);
 
-            var response = ConstructEmploymentResponse(bot, role, true);
+            var response = ConstructEmploymentResponse(bot, role);
+
+            return new BotResponse()
+            {
+                Speak = response
+            };
+        }
+
+        public async Task<IBotResponse> GetSpecificEmploymentHistoryAsync(IBot bot)
+        {
+            string company = null;
+            CVJob role = null;
+            if (bot.Query.HasToken(TokenKeys.Company) &&
+                String.IsNullOrEmpty(company = bot.Query.GetTokenValue(TokenKeys.Company)) == false)
+            {
+                var companyWithoutSpaces = company.Replace(" ", String.Empty);
+
+                bot.Log("Initialise service...");
+                await _service.InitialiseAsync();
+
+                var employmentHistory = _service.GetEmploymentHistory();
+                role = employmentHistory.FirstOrDefault(x => x.Employer.Replace(" ", String.Empty).StartsWith(companyWithoutSpaces, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (role == null)
+            {
+                return new BotResponse()
+                {
+                    Speak = String.Format(_resourceManager.GetResource(ResourceKeys.NoJobsWithEmployer),
+                                          company)
+                };
+            }
+
+            var response = ConstructEmploymentResponse(bot, role);
 
             return new BotResponse()
             {
@@ -53,10 +87,10 @@ namespace CVSkill
             var role = cachedJobs.FirstOrDefault();
             cachedJobs = cachedJobs.Skip(1);
 
-            var response = ConstructEmploymentResponse(bot, role, true);
+            var response = ConstructEmploymentResponse(bot, role);
 
             bool isMoreEmploymentHistory = false;
-            if (cachedJobs.Any())
+            if (cachedJobs?.Any() == true)
             {
                 isMoreEmploymentHistory = true;
                 response = $"{response}. {_resourceManager.GetResource(ResourceKeys.PreviousEmploymentContinue)}";
@@ -70,10 +104,10 @@ namespace CVSkill
             };
         }
 
-        private string ConstructEmploymentResponse(IBot bot, CVJob role, bool isCurrent)
+        private string ConstructEmploymentResponse(IBot bot, CVJob role)
         {
             var response = new StringBuilder();
-            response.AppendFormat(_resourceManager.GetResource(isCurrent
+            response.AppendFormat(_resourceManager.GetResource(role.End == null
                                                                ? ResourceKeys.CurrentEmploymentStart
                                                                : ResourceKeys.PreviousEmploymentStart),
                                   role.Start,
