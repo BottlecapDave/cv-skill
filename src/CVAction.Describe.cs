@@ -7,7 +7,7 @@ namespace CVSkill
     {
         public async Task<IBotResponse> DescribeAsync(IBot bot)
         {
-            bot.Log("Initialise service...");
+            bot.Log($"Starting {nameof(DescribeAsync)}");
             await _service.InitialiseAsync();
 
             var profile = _service.GetProfile();

@@ -12,7 +12,7 @@ namespace CVSkill
     {
         public async Task<IBotResponse> GetCurrentEmploymentAsync(IBot bot)
         {
-            bot.Log("Initialise service...");
+            bot.Log($"Starting {nameof(GetCurrentEmploymentAsync)}");
             await _service.InitialiseAsync();
 
             var employmentHistory = _service.GetEmploymentHistory();
@@ -28,6 +28,8 @@ namespace CVSkill
 
         public async Task<IBotResponse> GetSpecificEmploymentHistoryAsync(IBot bot)
         {
+            bot.Log($"Starting {nameof(GetSpecificEmploymentHistoryAsync)}");
+
             string company = null;
             CVJob role = null;
             if (bot.Query.HasToken(TokenKeys.Company) &&
@@ -61,6 +63,8 @@ namespace CVSkill
 
         public async Task<IBotResponse> GetNextEmploymentHistoryAsync(IBot bot)
         {
+            bot.Log($"Starting {nameof(GetNextEmploymentHistoryAsync)}");
+
             var cachedJobs = await bot.GetContextAsync<IEnumerable<CVJob>>(ContextKeys.EmploymentHistory);
             if (cachedJobs != null)
             {
@@ -75,9 +79,12 @@ namespace CVSkill
 
         public async Task<IBotResponse> GetEmploymentHistoryAsync(IBot bot, IEnumerable<CVJob> cachedJobs = null)
         {
+            bot.Log($"Starting {nameof(GetEmploymentHistoryAsync)}");
+
             if (cachedJobs == null)
             {
-                bot.Log("Initialise service...");
+                bot.Log("Retrieving cached jobs...");
+
                 await _service.InitialiseAsync();
 
                 var employmentHistory = _service.GetEmploymentHistory();

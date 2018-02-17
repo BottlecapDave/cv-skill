@@ -10,6 +10,8 @@ namespace CVSkill
     {
         private async Task<IBotResponse> GetExperienceAsync(IBot bot)
         {
+            bot.Log($"Starting {nameof(GetExperienceAsync)}");
+
             string keyword = null;
             if (bot.Query.HasToken(ParameterKeys.ExperienceType))
             {

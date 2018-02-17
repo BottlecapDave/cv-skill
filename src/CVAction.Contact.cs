@@ -1,7 +1,4 @@
 ﻿using Bottlecap.Components.Bots;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CVSkill
@@ -10,6 +7,8 @@ namespace CVSkill
     {
         public Task<IBotResponse> ContactAsync(IBot bot)
         {
+            bot.Log($"Starting {nameof(ContactAsync)}");
+
             return Task.FromResult<IBotResponse>(new BotResponse()
             {
                 Speak = _resourceManager.GetResource(ResourceKeys.Contact)

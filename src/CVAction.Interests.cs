@@ -8,7 +8,7 @@ namespace CVSkill
     {
         public async Task<IBotResponse> InterestsAsync(IBot bot)
         {
-            bot.Log("Initialise service...");
+            bot.Log($"Starting {nameof(InterestsAsync)}");
             await _service.InitialiseAsync();
 
             var interests = _service.GetInterests();

@@ -8,7 +8,7 @@ namespace CVSkill
     {
         private async Task<IBotResponse> GetAccomplishmentsAsync(IBot bot)
         {
-            bot.Log("Initialise service...");
+            bot.Log($"Starting {nameof(GetAccomplishmentsAsync)}");
             await _service.InitialiseAsync();
 
             var accomplishments = _service.GetAccomplishments();
