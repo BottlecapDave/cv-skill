@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CVSkill.Services;
 
 namespace CVSkill.Models
 {
@@ -13,5 +14,7 @@ namespace CVSkill.Models
         public IEnumerable<string> Interests { get; set; }
 
         public IEnumerable<CVAccomplishment> PersonalAccomplishments { get; set; }
+
+        public IEnumerable<CVEducation> Education { get; set; }
     }
 }

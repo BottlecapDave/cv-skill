@@ -87,6 +87,13 @@
         "I haven't worked for {0}.",
         "I don't have any recollection working for {0}."
       ]
+    },
+    {
+      "Key": "Education",
+      "Values": [
+        "I attended {0} between {1} and {2}. I was awarded a {3}.",
+        "Between {1} and {2} I went to {0}, where I was awarded a {3}."
+      ]
     }
   ]
 }

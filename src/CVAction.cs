@@ -55,6 +55,8 @@ namespace CVSkill
                     case IntentKeys.YesAlexa:
                     case IntentKeys.NextAlexa:
                         return await GetNextEmploymentHistoryAsync(bot);
+                    case IntentKeys.Education:
+                        return await GetEducationAsync(bot);
                     case IntentKeys.StopAlexa:
                     case IntentKeys.CancelAlexa:
                     case IntentKeys.NoAlexa:

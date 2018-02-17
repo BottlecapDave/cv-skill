@@ -97,5 +97,10 @@ namespace CVSkill.Services
         {
             return _cv.PersonalAccomplishments.Select(x => x.Accomplishment);
         }
+
+        public IEnumerable<CVEducation> GetEducation()
+        {
+            return _cv.Education;
+        }
     }
 }
