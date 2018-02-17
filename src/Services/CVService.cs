@@ -92,5 +92,10 @@ namespace CVSkill.Services
 
             return _cv.Employment.FirstOrDefault(x => String.Equals(x.Employer.Replace(" ", String.Empty), companyWithoutSpaces, StringComparison.OrdinalIgnoreCase));
         }
+
+        public IEnumerable<string> GetAccomplishments()
+        {
+            return _cv.PersonalAccomplishments.Select(x => x.Accomplishment);
+        }
     }
 }

@@ -11,5 +11,7 @@ namespace CVSkill.Models
         public IEnumerable<CVJob> Employment { get; set; }
 
         public IEnumerable<string> Interests { get; set; }
+
+        public IEnumerable<CVAccomplishment> PersonalAccomplishments { get; set; }
     }
 }

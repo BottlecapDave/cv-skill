@@ -4,11 +4,16 @@ using Bottlecap.Resources;
 using System.Reflection;
 using CVSkill.Services;
 using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace CVSkill
 {
     public partial class CVAction : IBotAction
     {
+        private const string MarkdownRegexName = "name";
+        private static readonly Regex _MarkdownRegex = new Regex("\\[(?<name>[^\\]]+)\\]\\([^\\)]+\\)");
         private static bool _IsResourcesLoaded;
 
         private readonly IResourceManager _resourceManager;
@@ -45,6 +50,8 @@ namespace CVSkill
                         return await GetEmploymentHistoryAsync(bot);
                     case IntentKeys.EmploymentSpecific:
                         return await GetSpecificEmploymentHistoryAsync(bot);
+                    case IntentKeys.Accomplishments:
+                        return await GetAccomplishmentsAsync(bot);
                     case IntentKeys.YesAlexa:
                     case IntentKeys.NextAlexa:
                         return await GetNextEmploymentHistoryAsync(bot);
@@ -75,6 +82,29 @@ namespace CVSkill
                     }
                 }
             }
+        }
+
+        private string ToString(IEnumerable<string> items)
+        {
+            var stringBuilder = new StringBuilder();
+            foreach (var interest in items)
+            {
+                var updatedInterest = StripMarkdown(interest);
+                stringBuilder.Append($" {updatedInterest}");
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        private string StripMarkdown(string interest)
+        {
+            var matches = _MarkdownRegex.Matches(interest);
+            foreach (Match match in matches)
+            {
+                interest = interest.Replace(match.Value, match.Groups[MarkdownRegexName].Value);
+            }
+
+            return interest;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace CVSkill.Services
         string GetProfile();
         string GetSkillName(string keyword);
         CVJob GetEmploymentHistory(string company);
+        IEnumerable<string> GetAccomplishments();
         IEnumerable<CVJob> GetEmploymentHistory();
         IEnumerable<string> GetInterests();
     }

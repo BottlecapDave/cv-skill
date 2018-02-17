@@ -13,15 +13,9 @@ namespace CVSkill
 
             var interests = _service.GetInterests();
 
-            var interestsBuilder = new StringBuilder();
-            foreach (var interest in interests)
-            {
-                interestsBuilder.Append($" {interest}");
-            }
-
             return new BotResponse()
             {
-                Speak = interestsBuilder.ToString()
+                Speak = ToString(interests)
             };
         }
     }
