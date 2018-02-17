@@ -65,7 +65,7 @@ namespace CVSkill
         {
             bot.Log($"Starting {nameof(GetNextEmploymentHistoryAsync)}");
 
-            var cachedJobs = await bot.GetContextAsync<IEnumerable<CVJob>>(ContextKeys.EmploymentHistory);
+            var cachedJobs = await bot.GetContextAsync<List<CVJob>>(ContextKeys.EmploymentHistory);
             if (cachedJobs != null)
             {
                 return await GetEmploymentHistoryAsync(bot, cachedJobs);
@@ -101,7 +101,7 @@ namespace CVSkill
             {
                 isMoreEmploymentHistory = true;
                 response = $"{response}. {_resourceManager.GetResource(ResourceKeys.PreviousEmploymentContinue)}";
-                await bot.AddContextAsync(ContextKeys.EmploymentHistory, cachedJobs);
+                await bot.AddContextAsync(ContextKeys.EmploymentHistory, cachedJobs.ToList());
             }
 
             return new BotResponse()
