@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using Bottlecap.Components.Bots.Content;
 
 namespace CVSkill
 {
@@ -34,33 +35,54 @@ namespace CVSkill
 
             if (String.IsNullOrEmpty(bot.Query?.Name) == false)
             {
+                IBotResponse response = null;
                 switch (bot.Query?.Name)
                 {
                     case IntentKeys.Experience:
-                        return await GetExperienceAsync(bot);
+                        response = await GetExperienceAsync(bot);
+                        break;
                     case IntentKeys.Describe:
-                        return await DescribeAsync(bot);
+                        response = await DescribeAsync(bot);
+                        break;
                     case IntentKeys.Contact:
-                        return await ContactAsync(bot);
+                        response = await ContactAsync(bot);
+                        break;
                     case IntentKeys.Interests:
-                        return await InterestsAsync(bot);
+                        response = await InterestsAsync(bot);
+                        break;
                     case IntentKeys.EmploymentCurrent:
-                        return await GetCurrentEmploymentAsync(bot);
+                        response = await GetCurrentEmploymentAsync(bot);
+                        break;
                     case IntentKeys.EmploymentHistory:
-                        return await GetEmploymentHistoryAsync(bot);
+                        response = await GetEmploymentHistoryAsync(bot);
+                        break;
                     case IntentKeys.EmploymentSpecific:
-                        return await GetSpecificEmploymentHistoryAsync(bot);
+                        response = await GetSpecificEmploymentHistoryAsync(bot);
+                        break;
                     case IntentKeys.Accomplishments:
-                        return await GetAccomplishmentsAsync(bot);
+                        response = await GetAccomplishmentsAsync(bot);
+                        break;
                     case IntentKeys.YesAlexa:
                     case IntentKeys.NextAlexa:
-                        return await GetNextEmploymentHistoryAsync(bot);
+                        response = await GetNextEmploymentHistoryAsync(bot);
+                        break;
                     case IntentKeys.Education:
-                        return await GetEducationAsync(bot);
+                        response = await GetEducationAsync(bot);
+                        break;
                     case IntentKeys.StopAlexa:
                     case IntentKeys.CancelAlexa:
                     case IntentKeys.NoAlexa:
                         return new BotResponse();
+                }
+
+                if (response != null)
+                {
+                    response.Content = ContentBuilderManager.Create(ContentBuilderKeys.Default, null);
+
+                    response.Speak = UpdateSsmlHints(response.Speak);
+                    response.IsSSML = true;
+
+                    return response;
                 }
             }
 
@@ -98,15 +120,38 @@ namespace CVSkill
             return stringBuilder.ToString();
         }
 
-        private string StripMarkdown(string interest)
+        /// <summary>
+        /// Strip away certain markdown languages as this can trip up voice assistants when reading the content.
+        /// </summary>
+        /// <param name="content">The content to strip the markdown from.</param>
+        /// <returns>The </returns>
+        private string StripMarkdown(string content)
         {
-            var matches = _MarkdownRegex.Matches(interest);
+            var matches = _MarkdownRegex.Matches(content);
             foreach (Match match in matches)
             {
-                interest = interest.Replace(match.Value, match.Groups[MarkdownRegexName].Value);
+                content = content.Replace(match.Value, match.Groups[MarkdownRegexName].Value);
             }
 
-            return interest;
+            return content;
+        }
+
+        /// <remarks>
+        /// Because voice assistants have difficulty pronouncing some things in technical CVs such as company names and technologies,
+        /// we need to find references to these and provide SSML hints. It's a little bit of a hack, but this data shouldn't be in the original
+        /// source as it describes the presentation of the data.
+        /// </remarks>
+        private string UpdateSsmlHints(string response)
+        {
+            response = response.Replace("BSc", "<sub alias=\"Bachelor of Science\">BSc</sub>");
+            response = response.Replace("Moq", "<sub alias=\"Mock\">Moq</sub>");
+            response = response.Replace("NUnit", "<sub alias=\"N Unit\">NUnit</sub>");
+            response = response.Replace("XCode", "<sub alias=\"X Code\">XCode</sub>");
+            response = response.Replace("REPL", "<say-as interpret-as=\"spell-out\">REPL</say-as>");
+            response = response.Replace("CI", "<say-as interpret-as=\"spell-out\">CI</say-as>");
+            response = response.Replace("AdDuplex", "<sub alias=\"Ad Duplex\">AdDuplex</sub>");
+
+            return response;
         }
     }
 }

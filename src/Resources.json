@@ -64,6 +64,8 @@
       "Values": [
         "I worked at {2} as a {3} between {0:MMM yyyy} and {1:MMM yyyy}.",
         "I worked at {2} as a {3}. I worked there from {0:MMM yyyy} and {1:MMM yyyy}.",
+        "I worked at {2} as a {3} from {0:MMM yyyy} and {1:MMM yyyy}.",
+        "I was a {3} at {2} from {0:MMM yyyy} and {1:MMM yyyy}.",
         "Between {0:MMM yyyy} and {1:MMM yyyy} I worked as a {3} at {2}."
       ]
     },
