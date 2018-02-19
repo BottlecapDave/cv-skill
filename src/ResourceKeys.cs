@@ -16,5 +16,6 @@
         public const string NoFurtherEmploymentHistory = "NoFurtherEmploymentHistory";
         public const string NoJobsWithEmployer = "NoJobsWithEmployer";
         public const string Education = "Education";
+        public const string Welcome = "Welcome";
     }
 }

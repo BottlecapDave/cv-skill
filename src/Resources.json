@@ -63,9 +63,9 @@
       "Key": "PreviousEmploymentStart",
       "Values": [
         "I worked at {2} as a {3} between {0:MMM yyyy} and {1:MMM yyyy}.",
-        "I worked at {2} as a {3}. I worked there from {0:MMM yyyy} and {1:MMM yyyy}.",
-        "I worked at {2} as a {3} from {0:MMM yyyy} and {1:MMM yyyy}.",
-        "I was a {3} at {2} from {0:MMM yyyy} and {1:MMM yyyy}.",
+        "I worked at {2} as a {3}. I worked there from {0:MMM yyyy} to {1:MMM yyyy}.",
+        "I worked at {2} as a {3} from {0:MMM yyyy} to {1:MMM yyyy}.",
+        "I was a {3} at {2} from {0:MMM yyyy} to {1:MMM yyyy}.",
         "Between {0:MMM yyyy} and {1:MMM yyyy} I worked as a {3} at {2}."
       ]
     },
@@ -95,6 +95,12 @@
       "Values": [
         "I attended {0} between {1} and {2}. I was awarded a {3}.",
         "Between {1} and {2} I went to {0}, where I was awarded a {3}."
+      ]
+    },
+    {
+      "Key": "Welcome",
+      "Values": [
+        "Hello, and welcome to the experimental interactive CV for David Kendall. You can ask about my experiences with technologies, my work history, interests, accomplishments among other things. If you have a question in mind, just ask. What would you like to know?"
       ]
     }
   ]

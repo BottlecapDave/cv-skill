@@ -86,7 +86,11 @@ namespace CVSkill
                 }
             }
 
-            return new BotResponse();
+            return new BotResponse()
+            {
+                Speak = _resourceManager.GetResource(ResourceKeys.Welcome),
+                ExpectedUserResponse = UserResponse.Required
+            };
         }
 
         private void LoadResources()
