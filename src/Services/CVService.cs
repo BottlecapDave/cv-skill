@@ -68,10 +68,11 @@ namespace CVSkill.Services
 
         private IEnumerable<Models.CVSkill> GetSkills(IEnumerable<Models.CVSkill> skills, string keyword)
         {
-            var keywordWithNoSpaces = keyword.Replace(" ", String.Empty);
+            // Stip out spaces and puncuation
+            var strippedKeyword = keyword.Replace(" ", String.Empty).Replace(".", String.Empty).Replace(",", String.Empty);
 
-            var skillsToReturn = skills?.Where(x => x.Keywords?.Any(skillkeyword => String.Equals(skillkeyword, keywordWithNoSpaces, StringComparison.OrdinalIgnoreCase)) == true);
-            skillsToReturn = skillsToReturn.Union(skills?.Where(x => String.Equals(x.Skill, keywordWithNoSpaces, StringComparison.OrdinalIgnoreCase)));
+            var skillsToReturn = skills?.Where(x => x.Keywords?.Any(skillkeyword => String.Equals(skillkeyword, strippedKeyword, StringComparison.OrdinalIgnoreCase)) == true);
+            skillsToReturn = skillsToReturn.Union(skills?.Where(x => String.Equals(x.Skill, strippedKeyword, StringComparison.OrdinalIgnoreCase)));
 
             return skillsToReturn;
         }
