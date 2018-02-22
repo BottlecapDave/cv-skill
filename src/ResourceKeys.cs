@@ -13,9 +13,10 @@
         public const string CurrentEmploymentStart = "CurrentEmploymentStart";
         public const string PreviousEmploymentStart = "PreviousEmploymentStart";
         public const string PreviousEmploymentContinue = "PreviousEmploymentContinue";
-        public const string NoFurtherEmploymentHistory = "NoFurtherEmploymentHistory";
         public const string NoJobsWithEmployer = "NoJobsWithEmployer";
         public const string Education = "Education";
         public const string Welcome = "Welcome";
+        public const string ForgotTheQuestion = "ForgotTheQuestion";
+        public const string ContinueExperience = "ContinueExperience";
     }
 }

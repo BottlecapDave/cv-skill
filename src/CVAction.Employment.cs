@@ -71,10 +71,7 @@ namespace CVSkill
                 return await GetEmploymentHistoryAsync(bot, cachedJobs);
             }
 
-            return new BotResponse()
-            {
-                Speak = _resourceManager.GetResource(ResourceKeys.NoFurtherEmploymentHistory)
-            };
+            return null;
         }
 
         public async Task<IBotResponse> GetEmploymentHistoryAsync(IBot bot, IEnumerable<CVJob> cachedJobs = null)

@@ -64,7 +64,7 @@ namespace CVSkill
                         break;
                     case IntentKeys.YesAlexa:
                     case IntentKeys.NextAlexa:
-                        response = await GetNextEmploymentHistoryAsync(bot);
+                        response = await GetNextResponseAsync(bot);
                         break;
                     case IntentKeys.Education:
                         response = await GetEducationAsync(bot);
@@ -91,6 +91,25 @@ namespace CVSkill
                 Speak = _resourceManager.GetResource(ResourceKeys.Welcome),
                 ExpectedUserResponse = UserResponse.Required
             };
+        }
+
+        private async Task<IBotResponse> GetNextResponseAsync(IBot bot)
+        {
+            var response  = await GetNextEmploymentHistoryAsync(bot);
+            if (response == null)
+            {
+                response = await GetNextExperienceAsync(bot);
+            }
+
+            if (response == null)
+            {
+                response = new BotResponse()
+                {
+                    Speak = _resourceManager.GetResource(ResourceKeys.ForgotTheQuestion)
+                };
+            }
+
+            return response;
         }
 
         private void LoadResources()

@@ -102,6 +102,20 @@
       "Values": [
         "Hello, and welcome to the experimental interactive CV for David Kendall. You can ask about my experiences with technologies, my work history, interests, accomplishments among other things. If you have a question in mind, just ask. What would you like to know?"
       ]
+    },
+    {
+      "Key": "ForgotTheQuestion",
+      "Values": [
+        "I'm sorry, I seem to have forgotten the question",
+        "Sorry, what was the question?"
+      ]
+    },
+    {
+      "Key": "ContinueExperience",
+      "Values": [
+        "Would you like to hear more about my experience?",
+        "would you like me to continue with my experience?"
+      ]
     }
   ]
 }
